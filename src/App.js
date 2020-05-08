@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
-import './App.css';
+import './assets/styles/main.scss';
 
 import { getUserGeolocation } from './plugins/getGeolocation'
 
 import Sidebar from './components/Sidebar'
-
+import Carousel from './components/Carousel'
 
 class App extends React.Component {
     // async componentDidMount() {
@@ -25,13 +25,11 @@ class App extends React.Component {
 
         return (
             <div className="weather-widget">
-                <Sidebar />
-                <div className="carousel content">
-                    <div className="left-coursor"></div>
+                <div className="specrow">
+                    <Sidebar />
+                    <Carousel>
+                    </Carousel>
 
-                    <div className="content"></div>
-
-                    <div className="right-coursor"></div>
                 </div>
             </div>
         );
