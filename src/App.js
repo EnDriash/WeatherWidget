@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Sidebar from './components/Sidebar'
 import axios from 'axios';
 
 class App extends React.Component {
@@ -26,42 +27,22 @@ class App extends React.Component {
         });
     };
     async componentDidMount() {
-        try {
-            const position = await this.getUserGeolocation();
-            const data = await axios.get(
-                `http://api.openweathermap.org/data/2.5/forecast?lat=${position.lat}&lon=${position.lon}&appid=f98c38ada5226151bb36847c5dd668b8`
-            );
-            console.log(data);
-        } catch (err) {
-            console.error(err);
-        }
+        // try {
+        //     const position = await this.getUserGeolocation();
+        //     const data = await axios.get(
+        //         `http://api.openweathermap.org/data/2.5/forecast?lat=${position.lat}&lon=${position.lon}&appid=f98c38ada5226151bb36847c5dd668b8`
+        //     );
+        //     console.log(data);
+        // } catch (err) {
+        //     console.error(err);
+        // }
     }
 
     render() {
 
-        const category = {
-            day: 'Dzień',
-            hour: 'Godzina',
-            forecast: 'Prognoza',
-            temperature: 'Temperatura',
-            rainfall: 'Opady',
-            windDirection: 'Kierunek Wiatru',
-            windSpeed: 'Prędkosć wiatru',
-            pressure: 'Ciśnienie'
-        }
-
         return (
             <div className="weather-widget">
-                <div className="sidebar">
-                    {
-                        Object.keys(category).map((elem, indx) => {
-                            return (
-                                <div className={`sidebar-row ${elem}`} key={indx} >{category[elem]}</div>
-                            )
-                        })
-                    }
-
-                </div>
+                <Sidebar />
                 <div className="carousel content">
                     <div className="left-coursor"></div>
 
