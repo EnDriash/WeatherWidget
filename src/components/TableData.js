@@ -23,7 +23,7 @@ function TableData({ category, weatherData }) {
         const spans = new Array(weatherData.length).fill(
             <span />,
             0,
-            weatherData.length - 1
+            weatherData.length
         );
 
         switch (category) {

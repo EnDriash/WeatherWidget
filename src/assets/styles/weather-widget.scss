@@ -2,10 +2,13 @@
     display: flex;
     min-height: 500px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+
     .specrow {
         margin: 0;
+        width: 100%;
     }
+
     .sidebar {
         z-index: 1;
         display: flex;
@@ -15,6 +18,8 @@
         font-weight: 600;
         text-align: center;
         box-shadow: 10px 0px 5px $associate-grey-color;
+        box-sizing: border-box;
+
         .sidebar-row {
             display: flex;
             justify-content: center;
@@ -25,6 +30,12 @@
                 border-top: none;
             }
         }
+    }
+
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     table {
@@ -38,14 +49,17 @@
         color: black;
         text-align: center;
         font-weight: 600;
+
         tbody {
             display: flex;
             flex-direction: column;
             height: 100%;
+
             tr {
                 display: flex;
                 border-right: 1px solid $line-grey-color;
                 align-items: center;
+                box-sizing: border-box;
                 justify-content: flex-start;
 
                 td {
@@ -62,6 +76,7 @@
                     box-sizing: border-box;
                     border-right: 1px solid $line-grey-color;
                     text-align: center;
+
                     p {
                         margin: 0;
                         padding: 0;
@@ -72,6 +87,7 @@
 
                 &.day {
                     td {
+                        box-sizing: border-box;
                         align-items: flex-start;
                         padding: 10px;
                         color: #888888;
@@ -97,6 +113,7 @@
                     td {
                         display: flex;
                         flex-direction: column;
+
                         .icon {
                             padding: 5px 10px;
                             box-sizing: border-box;
@@ -109,11 +126,13 @@
                 &.pressure,
                 &.rainfall {
                     position: relative;
+
                     .divides {
                         display: flex;
                         position: absolute;
                         left: 0;
                         height: 100%;
+
                         span {
                             display: flex;
                             flex-grow: 1;
@@ -132,6 +151,7 @@
                         height: 100%;
                         padding: 0 5px;
                         box-sizing: border-box;
+
                         div {
                             display: flex;
                             margin: 0;
@@ -151,6 +171,76 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .left-coursor,
+    .right-coursor {
+        display: none;
+    }
+
+    .scrollbar {
+        z-index: 2;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        width: 100%;
+        height: 1em;
+        background-color: white;
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+
+        .bar {
+            height: 100%;
+            width: 220px;
+            background-color: $text-grey-color;
+            box-shadow: 0 0 2px grey;
+            border-radius: 10px;
+        }
+    }
+
+    .carousel-content {
+        display: flex;
+        overflow-y: scroll;
+        overflow-y: hidden;
+    }
+
+    &:hover {
+        cursor: grab;
+
+        .left-coursor,
+        .right-coursor {
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: absolute;
+            width: 40px;
+            height: 70px;
+            background-color: $text-grey-color;
+            opacity: 0.4;
+            border-radius: 50px 0 0 50px;
+
+            svg {
+                width: 20px;
+                padding: 5px;
+            }
+        }
+
+        .left-coursor {
+            left: 0;
+            transform: rotate(180deg);
+        }
+
+        .right-coursor {
+            right: 0;
         }
     }
 }

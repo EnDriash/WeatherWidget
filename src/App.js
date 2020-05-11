@@ -7,7 +7,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { getUserGeolocation } from './plugins/getGeolocation';
 
 import Loader from 'react-loader-spinner';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/SideBar';
 import Carousel from './components/Carousel';
 import Table from './components/Table';
 
@@ -69,22 +69,22 @@ class App extends React.Component {
             <div className="weather-widget">
                 <div className="specrow">
                     <Sidebar category={category} />
-                    {weatherData ? (
-                        <Carousel>
-                            <Table
-                                category={category}
-                                weatherData={weatherData}
-                            />
-                        </Carousel>
-                    ) : (
-                        <Loader
-                            type="Puff"
-                            color="#00BFFF"
-                            height={100}
-                            width={100}
-                            timeout={3000}
+                    {weatherData ? (<Carousel>
+
+                        <Table
+                            category={category}
+                            weatherData={weatherData}
                         />
-                    )}
+                    </Carousel>) : (
+                            <Loader
+                                className="loader col-11"
+                                type="Puff"
+                                color="#00BFFF"
+                                height={100}
+                                width={100}
+                                timeout={3000}
+                            />
+                        )}
                 </div>
             </div>
         );
