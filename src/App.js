@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import moment from 'moment';
 
 import './assets/styles/main.scss';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -51,17 +50,6 @@ class App extends React.Component {
         weatherData: ''
     };
 
-    getDataDiffer() {
-        const { weatherData } = this.state;
-        const x = new moment(weatherData.list[0].dt_txt);
-        const y = new moment(weatherData.list[1].dt_txt);
-        return moment.duration(y.diff(x));
-    }
-
-    isSameDay() {
-        return this.getDataDiffer().as('day') === 0;
-    }
-
     async componentDidMount() {
         try {
             const position = await getUserGeolocation();
@@ -69,7 +57,6 @@ class App extends React.Component {
                 `http://api.openweathermap.org/data/2.5/forecast?lat=${position.lat}&lon=${position.lon}&appid=f98c38ada5226151bb36847c5dd668b8`
             );
             this.setState({ weatherData: data });
-            console.log(data);
         } catch (err) {
             console.error(err);
         }
@@ -95,7 +82,7 @@ class App extends React.Component {
                             color="#00BFFF"
                             height={100}
                             width={100}
-                            timeout={3000} //3 secs
+                            timeout={3000}
                         />
                     )}
                 </div>
