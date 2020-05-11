@@ -1,5 +1,11 @@
 module.exports = {
     extends: ['eslint:recommended', 'plugin:react/recommended'],
+    parser: 'babel-eslint',
+    env: {
+        browser: true,
+        node: true,
+        es6: true
+    },
     settings: {
         react: {
             createClass: 'createReactClass', // Regex for Component Factory to use,
