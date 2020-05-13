@@ -23,6 +23,7 @@ class Carousel extends React.Component {
     }
 
     startDrag = (event) => {
+        this.clickEffectDeleted()
         this.clickEffect(event)
         this.setState({ xstart: event.clientX - this.carousel.current.offsetLeft, contentOffsetLeft: this.carouselContentChild.offsetLeft, barOffsetLeft: this.bar.current.offsetLeft })
 
@@ -36,17 +37,28 @@ class Carousel extends React.Component {
     endDrag = () => {
         this.dragRegister.current.removeEventListener('mousemove', this.contentManager, false)
         this.scrollbar.current.removeEventListener('mousemove', this.scrollBarManager, false)
-        this.customCursor.parentElement.removeChild(this.customCursor)
+
+        this.clickEffectDeleted()
+
         this.offsetValidator()
         this.offsetCarouselInterpolation()
     }
 
-    clickEffect(e) {
+    clickEffect(event) {
         this.customCursor = document.createElement("div");
         this.customCursor.className = "clickEffect"
-        this.customCursor.style.top = (e.clientY - (25)) + "px";
-        this.customCursor.style.left = (e.clientX - (25)) + "px";
+        this.customCursor.style.top = event.clientY + "px";
+        this.customCursor.style.left = event.clientX + "px";
         this.dragRegister.current.appendChild(this.customCursor);
+    }
+
+    clickEffectDeleted() {
+        const elements = document.querySelectorAll('.clickEffect')
+        console.log(elements)
+        elements.forEach(elem => {
+            elem.classList.add('deleted')
+            elem.addEventListener('transitionend', () => { elem.remove(this.customCursor) })
+        })
     }
 
     widthInterpolation(value, containerWidth) {
@@ -121,34 +133,36 @@ class Carousel extends React.Component {
         this.carouselContentChild.style.left = `${this.state.contentOffsetLeft + this.getDeltaMove(moveX)}px`
     }
 
-    moveRightHandler() {
+    moveRightHandler(event) {
+        this.clickEffect(event)
         const deltaCarouselContentWidth = this.carouselContentChild.offsetWidth / this.props.elements
 
         this.bar.current.style.left = `${this.bar.current.offsetLeft + this.getDeltaMove(undefined, 'scrollbar', deltaCarouselContentWidth)}px`
         this.carouselContentChild.style.left = `${this.carouselContentChild.offsetLeft - deltaCarouselContentWidth}px`
 
         this.offsetValidator()
+        this.clickEffectDeleted()
     }
 
-    moveLeftHandler() {
+    moveLeftHandler(event) {
+        this.clickEffect(event)
         const deltaCarouselContentWidth = this.carouselContentChild.offsetWidth / this.props.elements
 
         this.bar.current.style.left = `${this.bar.current.offsetLeft - this.getDeltaMove(undefined, 'scrollbar', deltaCarouselContentWidth)}px`
         this.carouselContentChild.style.left = `${(this.carouselContentChild.offsetLeft) + deltaCarouselContentWidth}px`
 
         this.offsetValidator()
+        this.clickEffectDeleted()
     }
 
 
 
     componentDidMount() {
         this.carouselContentChild = document.querySelector('.carousel-content *:first-child');
-
         const percentOfLargeScrollView = this.carouselContentChild.offsetWidth / this.carousel.current.offsetWidtht
         const elementDeltaWidth = percentOfLargeScrollView * this.carousel.current.offsetWidtht
 
         this.bar.current.style.width = `${elementDeltaWidth}px`
-
     }
 
     render() {
@@ -156,8 +170,8 @@ class Carousel extends React.Component {
         return (
             <div className="carousel col-11" ref={this.carousel}>
                 <div className="dragRegister" ref={this.dragRegister} onMouseUp={event => this.endDrag(event)} onMouseDown={event => this.startDrag(event)} />
-                   
-               
+
+
                 <div className="left-coursor" ref={this.leftCoursor} onClick={event => this.moveLeftHandler(event)}>
                     <Arrow />
                 </div>
