@@ -69,13 +69,13 @@ class App extends React.Component {
             <div className="weather-widget">
                 <div className="specrow">
                     <Sidebar category={category} />
-                    {weatherData ? (<Carousel elements={weatherData.list.length}>
-
-                        <Table
-                            category={category}
-                            weatherData={weatherData}
-                        />
-                    </Carousel>) : (
+                    {weatherData ? (
+                        <Carousel elements={weatherData.list.length}  >
+                            <Table
+                                category={category}
+                                weatherData={weatherData}
+                            />
+                        </Carousel>) : (
                             <Loader
                                 className="loader col-11"
                                 type="Puff"
