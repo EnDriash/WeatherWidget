@@ -69,7 +69,7 @@ class App extends React.Component {
             <div className="weather-widget">
                 <div className="specrow">
                     <Sidebar category={category} />
-                    {weatherData ? (<Carousel>
+                    {weatherData ? (<Carousel elements={weatherData.list.length}>
 
                         <Table
                             category={category}
