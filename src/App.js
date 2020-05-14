@@ -70,21 +70,22 @@ class App extends React.Component {
                 <div className="specrow">
                     <Sidebar category={category} />
                     {weatherData ? (
-                        <Carousel elements={weatherData.list.length}  >
+                        <Carousel elements={weatherData.list.length}>
                             <Table
                                 category={category}
                                 weatherData={weatherData}
                             />
-                        </Carousel>) : (
-                            <Loader
-                                className="loader col-11"
-                                type="Puff"
-                                color="#00BFFF"
-                                height={100}
-                                width={100}
-                                timeout={3000}
-                            />
-                        )}
+                        </Carousel>
+                    ) : (
+                        <Loader
+                            className="loader col-11 col-sm-8 col-md-10"
+                            type="Puff"
+                            color="#00BFFF"
+                            height={100}
+                            width={100}
+                            timeout={3000}
+                        />
+                    )}
                 </div>
             </div>
         );
