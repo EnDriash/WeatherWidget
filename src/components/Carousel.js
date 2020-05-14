@@ -174,9 +174,8 @@ class Carousel extends React.Component {
         );
 
         this.clickEffectDeleted();
-
-        this.offsetValidator();
         this.offsetCarouselInterpolation();
+        this.offsetValidator();
     };
 
     scrollBarManager = (event) => {

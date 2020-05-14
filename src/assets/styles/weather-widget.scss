@@ -123,22 +123,6 @@
                 &.rainfall {
                     position: relative;
 
-                    .divides {
-                        display: flex;
-                        position: absolute;
-                        left: 1px;
-                        height: 100%;
-
-                        span {
-                            display: flex;
-                            flex-grow: 1;
-                            width: $cell-width;
-                            height: 100%;
-                            box-sizing: border-box;
-                            border-right: 1px solid $line-grey-color;
-                        }
-                    }
-
                     td {
                         display: flex;
                         justify-content: space-between;
@@ -148,6 +132,22 @@
                         padding: 0 5px;
                         box-sizing: border-box;
                         border: none;
+
+                        &.divides {
+                            display: flex;
+                            position: absolute;
+                            height: 100%;
+                            padding: 0;
+                            span {
+                                display: flex;
+                                flex-grow: 1;
+                                width: $cell-width;
+                                height: 100%;
+                                box-sizing: border-box;
+                                border-right: 1px solid $line-grey-color;
+                            }
+                        }
+
                         div {
                             display: flex;
                             margin: 0;
@@ -164,6 +164,9 @@
                         position: relative;
                         margin: 0px;
                         padding: 0;
+                        &.divides {
+                            transform: scaleX(1);
+                        }
                     }
                 }
             }

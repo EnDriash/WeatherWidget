@@ -20,11 +20,9 @@ function TableData({ category, weatherData }) {
         );
         const days = getDays();
         const deltaIndex = getRangeOfDayElements(weatherData);
-        const spans = new Array(weatherData.length).fill(
-            <span />,
-            0,
-            weatherData.length
-        );
+        const spans = new Array(weatherData.length)
+            .fill(<span />, 0, weatherData.length)
+            .map((_, idx) => <span key={idx} />);
 
         switch (category) {
             case 'day':
@@ -39,18 +37,18 @@ function TableData({ category, weatherData }) {
                 });
 
             case 'hour':
-                return weatherData.map((elem, idx) => {
+                return weatherData.map((elem) => {
                     return (
-                        <td className={`table-data ${category}`} key={idx}>
+                        <td className={`table-data ${category}`} key={elem.dt}>
                             <p>{elem.dt_txt.slice(11, 16)}</p>
                         </td>
                     );
                 });
 
             case 'forecast':
-                return weatherData.map((elem, idx) => {
+                return weatherData.map((elem) => {
                     return (
-                        <td className={`table-data ${category}`} key={idx}>
+                        <td className={`table-data ${category}`} key={elem.dt}>
                             <img
                                 src={`http://openweathermap.org/img/wn/${elem.weather[0].icon}.png`}
                             />
@@ -64,7 +62,7 @@ function TableData({ category, weatherData }) {
                         <td className={`table-data ${category}`}>
                             <ReactFC {...configTemp} />
                         </td>
-                        <div className="divides">{spans}</div>
+                        <td className="divides">{spans}</td>
                     </Aux>
                 );
 
@@ -74,14 +72,14 @@ function TableData({ category, weatherData }) {
                         <td className={`table-data ${category}`}>
                             <ReactFC {...configRainfall} />
                         </td>
-                        <div className="divides">{spans}</div>
+                        <td className="divides">{spans}</td>
                     </Aux>
                 );
 
             case 'windDirection':
-                return weatherData.map((elem, idx) => {
+                return weatherData.map((elem) => {
                     return (
-                        <td className={`table-data ${category}`} key={idx}>
+                        <td className={`table-data ${category}`} key={elem.dt}>
                             <div
                                 className="icon"
                                 style={{
@@ -97,9 +95,9 @@ function TableData({ category, weatherData }) {
                 });
 
             case 'windSpeed':
-                return weatherData.map((elem, idx) => {
+                return weatherData.map((elem) => {
                     return (
-                        <td className={`table-data ${category}`} key={idx}>
+                        <td className={`table-data ${category}`} key={elem.dt}>
                             <p>{getWindStrength(elem.wind.speed)}</p>
                             <p>{`${speedUnitConverter(
                                 elem.wind.speed
@@ -115,7 +113,7 @@ function TableData({ category, weatherData }) {
                             <ReactFC {...configPressure} />
                         </td>
 
-                        <div className="divides">{spans}</div>
+                        <td className="divides">{spans}</td>
                     </Aux>
                 );
         }

@@ -52,9 +52,9 @@ class App extends React.Component {
 
     async componentDidMount() {
         try {
-            const position = await getUserGeolocation();
+            const { lat, lon } = await getUserGeolocation();
             const { data } = await axios.get(
-                `http://api.openweathermap.org/data/2.5/forecast?lat=${position.lat}&lon=${position.lon}&appid=f98c38ada5226151bb36847c5dd668b8`
+                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=f98c38ada5226151bb36847c5dd668b8`
             );
             this.setState({ weatherData: data });
         } catch (err) {

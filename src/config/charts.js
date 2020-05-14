@@ -5,7 +5,7 @@ export const chartTemperatureConfigs = {
     dataFormat: 'json',
     dataSource: {
         chart: {
-            valueFontSize: '22',
+            valueFontSize: '20',
             valueFontBold: '600',
             palettecolors: '#f9d348',
             divLineColor: '#ffffff',

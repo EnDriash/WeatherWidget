@@ -3,7 +3,7 @@ export const getWindDirection = (angle) => {
         'Północny',
         'Pn.-Wsch.',
         'Wschód  ',
-        'Pd.-Zach.',
+        'Pd.-Wsch.',
         'Południowy',
         'Pd.-Zach.',
         'Zachodni',
