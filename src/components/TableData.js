@@ -23,7 +23,7 @@ function TableData({ category, weatherData }) {
         const spans = new Array(weatherData.length).fill(
             <span />,
             0,
-            weatherData.length - 1
+            weatherData.length
         );
 
         switch (category) {
@@ -33,7 +33,7 @@ function TableData({ category, weatherData }) {
                         <td
                             className={`table-data ${category} ${category}-width-${deltaIndex[idx]}`}
                             key={idx}>
-                            {day}
+                            <p>{day}</p>
                         </td>
                     );
                 });
@@ -42,7 +42,7 @@ function TableData({ category, weatherData }) {
                 return weatherData.map((elem, idx) => {
                     return (
                         <td className={`table-data ${category}`} key={idx}>
-                            {elem.dt_txt.slice(11, 16)}
+                            <p>{elem.dt_txt.slice(11, 16)}</p>
                         </td>
                     );
                 });

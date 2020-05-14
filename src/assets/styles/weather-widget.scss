@@ -1,11 +1,15 @@
 .weather-widget {
     display: flex;
-    min-height: 500px;
+    min-height: 540px;
     width: 100%;
     height: 100vh;
+
     .specrow {
         margin: 0;
+        width: 100%;
+        height: 100%;
     }
+
     .sidebar {
         z-index: 1;
         display: flex;
@@ -15,6 +19,8 @@
         font-weight: 600;
         text-align: center;
         box-shadow: 10px 0px 5px $associate-grey-color;
+        box-sizing: border-box;
+
         .sidebar-row {
             display: flex;
             justify-content: center;
@@ -27,27 +33,31 @@
         }
     }
 
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     table {
         z-index: 0;
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        height: 100vh;
-        min-height: 500px;
-        max-height: 100vh;
         color: black;
         text-align: center;
         font-weight: 600;
+        height: auto;
         tbody {
             display: flex;
             flex-direction: column;
             height: 100%;
             tr {
                 display: flex;
-                border-right: 1px solid $line-grey-color;
-                align-items: center;
+                align-items: stretch;
+                align-content: stretch;
+                box-sizing: border-box;
                 justify-content: flex-start;
-
                 td {
                     display: flex;
                     flex-direction: column;
@@ -62,6 +72,7 @@
                     box-sizing: border-box;
                     border-right: 1px solid $line-grey-color;
                     text-align: center;
+
                     p {
                         margin: 0;
                         padding: 0;
@@ -72,6 +83,7 @@
 
                 &.day {
                     td {
+                        box-sizing: border-box;
                         align-items: flex-start;
                         padding: 10px;
                         color: #888888;
@@ -97,6 +109,7 @@
                     td {
                         display: flex;
                         flex-direction: column;
+
                         .icon {
                             padding: 5px 10px;
                             box-sizing: border-box;
@@ -109,11 +122,13 @@
                 &.pressure,
                 &.rainfall {
                     position: relative;
+
                     .divides {
                         display: flex;
                         position: absolute;
-                        left: 0;
+                        left: 1px;
                         height: 100%;
+
                         span {
                             display: flex;
                             flex-grow: 1;
@@ -132,6 +147,7 @@
                         height: 100%;
                         padding: 0 5px;
                         box-sizing: border-box;
+                        border: none;
                         div {
                             display: flex;
                             margin: 0;
